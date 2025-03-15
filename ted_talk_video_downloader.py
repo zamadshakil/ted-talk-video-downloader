@@ -26,5 +26,18 @@ result_mp4 = re.search("(?P<url>https?://[^\s]+)(mp4)", result).group("url")
 
 mp4_url = result_mp4.split('"')[0]
 
+print("Downloading the video form the url.... "+mp4_url)
+
+
+fileName = mp4_url.split("/")[len(mp4_url.split("/"))-1].split('?')[0]
+
+print("Storing the video in the file.... "+fileName)
+
+r = requests.get(mp4_url)
+
+with open(fileName, 'wb') as f:
+    f.write(r.content)
+
+print("Video downloaded successfully.")
 
 
